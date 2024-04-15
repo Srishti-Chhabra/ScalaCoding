@@ -11,14 +11,12 @@ class Prime{
   }
 
   def nthPrimeNumber(n: Int): Int = {
-    var count = 1
-    var i = 2
-    while(count<=n){
-      if(isPrime(i))
-          count = count + 1
-      i = i + 1
+    def loop(currentNumber: Int, primesFound: Int): Int = {
+      if (primesFound == n) currentNumber - 1
+      else if (isPrime(currentNumber)) loop(currentNumber + 1, primesFound + 1)
+      else loop(currentNumber + 1, primesFound)
     }
-    i-1
+    loop(2, 0)
   }
 }
 
